@@ -14,7 +14,7 @@ public class File {
 		FileReader fr=null;
 		
 		try{
-			fr = new FileReader("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/pokerTest.txt");
+			fr = new FileReader("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/poker2M.txt");
 			br = new BufferedReader(fr);
 			String linhaAtual;
 			Double count = new Double((double) 1);
@@ -42,8 +42,7 @@ public class File {
 		return maos;
 	}
 
-	 public static void escreverDados(Maos maos){
-	        Calendar tempoExec = Calendar.getInstance();
+	 public static int [] escreverDados(Maos maos){
 	        int countQnt4iguais = 0;
 	        int count4Iguais = 0;
 	        Boolean has4Iguais = false;
@@ -54,8 +53,6 @@ public class File {
 	        Boolean hasDiferenca = false;
 	        int countQntNadas = 0;
 	        Boolean hasNada = false;
-	        try{
-	            FileWriter writer = new FileWriter("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/pokerTestSaida.txt");
 	                for(Double[] mao : maos.getListaMaos()){
 	                    has4Iguais = false;
 	                    hasSequencia = false;
@@ -109,10 +106,10 @@ public class File {
 	                        continue;
 	                    } else {
 	                        for (int i=1; i < mao.length; i++){
-	                            countNumerosDiferentes = 0;
+	                            //countNumerosDiferentes = 0;
 	                            for(int j = i+1; j < mao.length; j++){
 	                                if(!mao[i].equals(mao[j])){
-	                                    countNumerosDiferentes++;
+	                                    //countNumerosDiferentes++;
 	                                    hasDiferenca = true;
 	                                }else{
 	                                    hasDiferenca = false;
@@ -136,13 +133,12 @@ public class File {
 	                    }
 	                }
 	            }
-	        writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.SECOND)) + " | " + 
-	                        countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias);
-	        writer.close();
+	        /*writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.MILLISECOND)) + " | " + 
+	                        countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias + " | ");
+	        writer.close();*/
+	        int saidas [] = {countQnt4iguais, countQntNumeroDiferencas, countQntSequencias};
+	        return saidas; 
 	            
-	        } catch(IOException e){
-	            e.printStackTrace();
-	        }
 	    }
 
 	
