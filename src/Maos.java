@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 
 public class Maos {
-	
-	private ArrayList<Double[]> listaMaos;
-	
-	public Maos(ArrayList<Double[]> listaMaos) {
+
+	private ArrayList<double[]> listaMaos;
+
+	public Maos(ArrayList<double[]> listaMaos) {
 		super();
 		this.listaMaos = listaMaos;
 	}
 
-	public ArrayList<Double[]> getListaMaos() {
+	public ArrayList<double[]> getListaMaos() {
 		return listaMaos;
 	}
 
-	public void setListaMaos(ArrayList<Double[]> listaMaos) {
+	public void setListaMaos(ArrayList<double[]> listaMaos) {
 		this.listaMaos = listaMaos;
 	}
-	
+
 }

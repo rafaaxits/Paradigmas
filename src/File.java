@@ -8,24 +8,20 @@ import java.util.Calendar;
 import java.util.stream.Stream;
 
 public class File {
-	public static ArrayList<Double[]> lerArquivo(){
-		ArrayList<Double[]> maos = new ArrayList<Double[]>();
+	public static ArrayList<double[]> lerArquivo(String arq){
+		ArrayList<double[]> maos = new ArrayList<double[]>();
 		BufferedReader br=null;
 		FileReader fr=null;
-		
+
 		try{
-			fr = new FileReader("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/poker2M.txt");
+			fr = new FileReader(arq);
 			br = new BufferedReader(fr);
 			String linhaAtual;
-			Double count = new Double((double) 1);
+			double count = 1;
 			while(br.ready()){
 				linhaAtual = br.readLine();
 				if(!linhaAtual.isEmpty()){
-					Double[] index = new Double[1];
-					index[0] = count;
-					maos.add(Stream.concat(Arrays.stream(index),
-						Arrays.stream(linhaToDouble(linhaAtual.split(" ")))
-						).toArray(Double[]::new));
+					maos.add(linhaToDouble(linhaAtual.split(" ")));
 					count = count + 1;
 				}
 			}
@@ -45,22 +41,24 @@ public class File {
 	 public static int [] escreverDados(Maos maos){
 	        int countQnt4iguais = 0;
 	        int count4Iguais = 0;
-	        Boolean has4Iguais = false;
+	        boolean has4Iguais = false;
 	        int countQntSequencias = 0;
-	        Boolean hasSequencia = false;
+	        boolean hasSequencia = false;
 	        int countNumerosDiferentes = 0;
 	        int countQntNumeroDiferencas = 0;
-	        Boolean hasDiferenca = false;
+	        boolean hasDiferenca = false;
 	        int countQntNadas = 0;
-	        Boolean hasNada = false;
-	                for(Double[] mao : maos.getListaMaos()){
+	        boolean hasNada = false;
+	                for(double[] mao : maos.getListaMaos()){
 	                    has4Iguais = false;
 	                    hasSequencia = false;
 	                    hasDiferenca = false;
 	                    hasNada = false;
-	                    for(int i = 1; i<mao.length; i++){
+	                    //Ordenando a mão antes de qualquer verificação
+	                    Arrays.sort(mao);
+	                    for(int i = 0; i<mao.length; i++){
 	                        for(int j = i; j<mao.length; j++){
-	                            if(mao[i].equals(mao[j])){
+	                            if(mao[i]==mao[j]){
 	                                count4Iguais++;
 	                            }
 	                        }
@@ -83,17 +81,17 @@ public class File {
 	                        has4Iguais = false;
 	                        continue;
 	                    }else {
-	                    Double [] maoOrdenada = new Double [5];
-	                    for(int i = 0; i<mao.length-1; i++){
-	                        maoOrdenada[i] = mao[i+1];
+	                    /*double[] maoOrdenada = new double[5];
+	                    for(int i = 0; i<mao.length; i++){
+	                        maoOrdenada[i] = mao[i];
 	                    }
-	                    Arrays.sort(maoOrdenada);
-	                    for(int i=0; i < maoOrdenada.length; i++){
+	                    Arrays.sort(maoOrdenada);*/
+	                    for(int i=0; i < mao.length; i++){
 	                        int j = i + 1;
-	                        if(j == maoOrdenada.length){
+	                        if(j == mao.length){
 	                            continue;
 	                        }
-	                        if(maoOrdenada[i].equals(maoOrdenada[j] - 1)){
+	                        if((mao[i])== (mao[j]-1)){
 	                            hasSequencia = true;
 	                        } else{
 	                            hasSequencia = false;
@@ -105,10 +103,10 @@ public class File {
 	                        hasSequencia = false;
 	                        continue;
 	                    } else {
-	                        for (int i=1; i < mao.length; i++){
+	                        for (int i=0; i < mao.length; i++){
 	                            //countNumerosDiferentes = 0;
 	                            for(int j = i+1; j < mao.length; j++){
-	                                if(!mao[i].equals(mao[j])){
+	                                if(mao[i]!=mao[j]){
 	                                    //countNumerosDiferentes++;
 	                                    hasDiferenca = true;
 	                                }else{
@@ -133,41 +131,41 @@ public class File {
 	                    }
 	                }
 	            }
-	        /*writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.MILLISECOND)) + " | " + 
+	        /*writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.MILLISECOND)) + " | " +
 	                        countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias + " | ");
 	        writer.close();*/
 	        int saidas [] = {countQnt4iguais, countQntNumeroDiferencas, countQntSequencias};
-	        return saidas; 
-	            
+	        return saidas;
+
 	    }
 
-	
-	public static Double[] linhaToDouble(String[] linha) {
-		 Double [] resultado = new Double[linha.length];
+
+	public static double[] linhaToDouble(String[] linha) {
+		 double [] resultado = new double[linha.length];
 		 for(short i = 0; i<linha.length;i++){
 			 switch (linha[i]){
 			 	case "T":
 			 		linha[i] = "10";
-			 		resultado[i] = new Double(linha[i]);
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 	break;
 			 	case "J":
 			 		linha[i] = "11";
-			 		resultado[i] = new Double(linha[i]);
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 	break;
 			 	case "Q":
 			 		linha[i] = "12";
-			 		resultado[i] = new Double(linha[i]);
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 	break;
 			 	case "K":
 			 		linha[i] = "13";
-			 		resultado[i] = new Double(linha[i]);
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 	break;
 			 	case "A":
 			 		linha[i] = "14";
-			 		resultado[i] = new Double(linha[i]);
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 	break;
-			 	default: 
-			 		resultado[i] = new Double(linha[i]);
+			 	default:
+			 		resultado[i] = Double.parseDouble(linha[i]);
 			 }
 		 }
 		 return resultado;
