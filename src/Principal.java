@@ -1,5 +1,4 @@
 import java.io.FileWriter;
-import java.util.Calendar;
 
 public class Principal {
 
@@ -9,7 +8,7 @@ public class Principal {
 		int saidas [] = File.escreverDados(maos);
 		long fim = System.currentTimeMillis();
 		try{
-			FileWriter writer = new FileWriter("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/pokerTestSaida.txt");
+			FileWriter writer = new FileWriter("src/Arquivos/pokerTestSaida.txt");
 			writer.write(Math.abs(inicio - fim) + " | " + 
                     saidas[0] + " | " + saidas[1] + " | " + saidas[2] + " | ");
 			writer.close();

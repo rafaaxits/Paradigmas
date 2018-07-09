@@ -14,7 +14,7 @@ public class File {
 		FileReader fr=null;
 		
 		try{
-			fr = new FileReader("/Users/mac/Documents/Documentos 18.1/Paradigmas/ProjetoParadigmas2kv1/src/Files/poker2M.txt");
+			fr = new FileReader("src/Arquivos/poker2K.txt");
 			br = new BufferedReader(fr);
 			String linhaAtual;
 			Double count = new Double((double) 1);
@@ -43,16 +43,16 @@ public class File {
 	}
 
 	 public static int [] escreverDados(Maos maos){
-	        int countQnt4iguais = 0;
-	        int count4Iguais = 0;
-	        Boolean has4Iguais = false;
-	        int countQntSequencias = 0;
-	        Boolean hasSequencia = false;
-	        int countNumerosDiferentes = 0;
-	        int countQntNumeroDiferencas = 0;
-	        Boolean hasDiferenca = false;
-	        int countQntNadas = 0;
-	        Boolean hasNada = false;
+	        int countQnt4iguais = 0; // Conta a quantidade de mãos com 4 numeros iguais presentes no arquivo
+	        int count4Iguais = 0; // Contador auxiliar para verificar se existe 4 numeros iguais na mão 
+	        Boolean has4Iguais = false; // Booleano auxiliar que é utilizado para confirmação de 4 numeros iguais numa mão
+	        int countQntSequencias = 0; // Conta a quantidade de mãos com seguencias presentes no arquivo
+	        Boolean hasSequencia = false; // Booleano auxiliar que é utilizado para confirmação de uma sequencia numa mão
+	        int countNumerosDiferentes = 0; // Contador auxiliar para verificar os numeros diferentes numa mão 
+	        int countQntNumeroDiferencas = 0; // Conta a quanditade de mãos com numeros diferentes presentes no arquivo
+	        Boolean hasDiferenca = false; // Booleano auxixliar que é utilizado para confirmação de uma sequencia numa mão
+	        int countQntNadas = 0; // Conta a quantidade de mãos com nada presentes no arquivo
+	        Boolean hasNada = false; // Booleano auxiliar que é utilizado para confirmação de um nada numa mão
 	                for(Double[] mao : maos.getListaMaos()){
 	                    has4Iguais = false;
 	                    hasSequencia = false;
@@ -133,15 +133,11 @@ public class File {
 	                    }
 	                }
 	            }
-	        /*writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.MILLISECOND)) + " | " + 
-	                        countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias + " | ");
-	        writer.close();*/
 	        int saidas [] = {countQnt4iguais, countQntNumeroDiferencas, countQntSequencias};
 	        return saidas; 
 	            
 	    }
-
-	
+	 
 	public static Double[] linhaToDouble(String[] linha) {
 		 Double [] resultado = new Double[linha.length];
 		 for(short i = 0; i<linha.length;i++){
