@@ -1,0 +1,17 @@
+Versão 1 Poker2K:
+1º) 64 ms
+2º) 82 ms
+3º) 65 ms 
+Média de tempo: 70,33 ms 
+
+Versão 1 Poker2M:
+1º) 16131 ms
+2º) 16220 ms
+3º) 16895 ms
+Média de tempo: 16415,33 ms
+
+Versão 1 Poker2000M:
+1º) 1745924 ms
+2º) 1691741 ms
+3º) 1695023 ms
+Média de tempo: 1710896 ms
