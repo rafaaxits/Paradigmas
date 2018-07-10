@@ -1,69 +1,31 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.stream.Stream;
 
 public class File {
-	public static ArrayList<double[]> lerArquivo(String arq){
-		ArrayList<double[]> maos = new ArrayList<double[]>();
-		BufferedReader br=null;
-		FileReader fr=null;
 
-		try{
-			fr = new FileReader(arq);
-			br = new BufferedReader(fr);
-			String linhaAtual;
-			double count = 1;
-			while(br.ready()){
-				linhaAtual = br.readLine();
-				if(!linhaAtual.isEmpty()){
-					maos.add(linhaToDouble(linhaAtual.split(" ")));
-					count = count + 1;
-				}
-			}
-		}catch (IOException e){
-			e.printStackTrace();
-		}finally{
-			try{
-				fr.close();
-				br.close();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		}
-		return maos;
-	}
-
-	 public static int [] escreverDados(Maos maos){
-	        int countQnt4iguais = 0;
-	        int count4Iguais = 0;
-	        boolean has4Iguais = false;
-	        int countQntSequencias = 0;
-	        boolean hasSequencia = false;
-	        int countNumerosDiferentes = 0;
-	        int countQntNumeroDiferencas = 0;
-	        boolean hasDiferenca = false;
-	        int countQntNadas = 0;
-	        boolean hasNada = false;
-	                for(double[] mao : maos.getListaMaos()){
+	 public static void escreverDados(Mao mao){
+	        
+	        short count4Iguais = 0; // Contador auxiliar para verificar se existe 4 numeros iguais na mão 
+	        Boolean has4Iguais = false; // Booleano auxiliar que é utilizado para confirmação de 4 numeros iguais numa mão
+	        
+	        Boolean hasSequencia = false; // Booleano auxiliar que é utilizado para confirmação de uma sequencia numa mão
+	        short countNumerosDiferentes = 0; // Contador auxiliar para verificar os numeros diferentes numa mão 
+	        
+	        Boolean hasDiferenca = false; // Booleano auxixliar que é utilizado para confirmação de uma sequencia numa mão
+	        
+	        Boolean hasNada = false; // Booleano auxiliar que é utilizado para confirmação de um nada numa mão
+	        double[] maoAux = mao.getMao(); 
 	                    has4Iguais = false;
 	                    hasSequencia = false;
 	                    hasDiferenca = false;
 	                    hasNada = false;
-	                    //Ordenando a m�o antes de qualquer verifica��o
-	                    Arrays.sort(mao);
-	                    for(int i = 0; i<mao.length; i++){
-	                        for(int j = i; j<mao.length; j++){
-	                            if(mao[i]==mao[j]){
+	                    for(short i = 0; i<maoAux.length; i++){
+	                        for(short j = i; j<maoAux.length; j++){
+	                            if(maoAux[i] == (maoAux[j])){
 	                                count4Iguais++;
 	                            }
 	                        }
 	                        if(count4Iguais == 4){
-	                            countQnt4iguais++;
+	                            Principal.countQnt4iguais++;
 	                            count4Iguais = 0;
 	                            has4Iguais = true;
 	                            break;
@@ -79,19 +41,18 @@ public class File {
 	                    }
 	                    if(has4Iguais){
 	                        has4Iguais = false;
-	                        continue;
 	                    }else {
-	                    /*double[] maoOrdenada = new double[5];
-	                    for(int i = 0; i<mao.length; i++){
-	                        maoOrdenada[i] = mao[i];
+	                    double [] maoOrdenada = new double [5];
+	                    for(short i = 0; i<maoAux.length; i++){
+	                        maoOrdenada[i] = maoAux[i];
 	                    }
-	                    Arrays.sort(maoOrdenada);*/
-	                    for(int i=0; i < mao.length; i++){
-	                        int j = i + 1;
-	                        if(j == mao.length){
+	                    Arrays.sort(maoOrdenada);
+	                    for(short i=0; i < maoOrdenada.length; i++){
+	                        short j = (short) (i + 1);
+	                        if(j == maoOrdenada.length){
 	                            continue;
 	                        }
-	                        if((mao[i])== (mao[j]-1)){
+	                        if(maoOrdenada[i]==(maoOrdenada[j] - 1)){
 	                            hasSequencia = true;
 	                        } else{
 	                            hasSequencia = false;
@@ -99,14 +60,13 @@ public class File {
 	                        }
 	                    }
 	                    if(hasSequencia == true){
-	                        countQntSequencias++;
+	                        Principal.countQntSequencias++;
 	                        hasSequencia = false;
-	                        continue;
 	                    } else {
-	                        for (int i=0; i < mao.length; i++){
+	                        for (int i=0; i < maoAux.length; i++){
 	                            //countNumerosDiferentes = 0;
-	                            for(int j = i+1; j < mao.length; j++){
-	                                if(mao[i]!=mao[j]){
+	                            for(int j = i+1; j < maoAux.length; j++){
+	                                if(maoAux[i]!=maoAux[j]){
 	                                    //countNumerosDiferentes++;
 	                                    hasDiferenca = true;
 	                                }else{
@@ -120,52 +80,42 @@ public class File {
 	                            }
 	                        }
 	                        if(hasDiferenca == true){
-	                            countQntNumeroDiferencas ++;
+	                            Principal.countQntNumeroDiferencas ++;
 	                            hasDiferenca = false;
-	                            continue;
 	                        }else{
-	                            countQntNadas++;
+	                        	Principal.countQntNadas++;
 	                            hasNada = true;
-	                            continue;
 	                        }
 	                    }
-	                }
-	            }
-	        /*writer.write(Math.abs(Calendar.getInstance().get(Calendar.MILLISECOND) - tempoExec.get(Calendar.MILLISECOND)) + " | " +
-	                        countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias + " | ");
-	        writer.close();*/
-	        int saidas [] = {countQnt4iguais, countQntNumeroDiferencas, countQntSequencias};
-	        return saidas;
-
+	                } 
 	    }
-
-
+	 
 	public static double[] linhaToDouble(String[] linha) {
 		 double [] resultado = new double[linha.length];
 		 for(short i = 0; i<linha.length;i++){
 			 switch (linha[i]){
 			 	case "T":
 			 		linha[i] = "10";
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 		resultado[i] = new Double(linha[i]);
 			 	break;
 			 	case "J":
 			 		linha[i] = "11";
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 		resultado[i] = new Double(linha[i]);
 			 	break;
 			 	case "Q":
 			 		linha[i] = "12";
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 		resultado[i] = new Double(linha[i]);
 			 	break;
 			 	case "K":
 			 		linha[i] = "13";
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 		resultado[i] = new Double(linha[i]);
 			 	break;
 			 	case "A":
 			 		linha[i] = "14";
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 		resultado[i] = new Double(linha[i]);
 			 	break;
-			 	default:
-			 		resultado[i] = Double.parseDouble(linha[i]);
+			 	default: 
+			 		resultado[i] = new Double(linha[i]);
 			 }
 		 }
 		 return resultado;
