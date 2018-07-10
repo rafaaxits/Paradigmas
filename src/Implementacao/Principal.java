@@ -1,3 +1,5 @@
+package Implementacao;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -56,7 +58,7 @@ public class Principal {
 		InputStream input=null;
 		OutputStream output= new FileOutputStream("src/Arquivos/saida.txt");;
 		try{
-			input = new BufferedInputStream(new FileInputStream("src/Arquivos/Poker200M.txt"));
+			input = new BufferedInputStream(new FileInputStream("src/Arquivos/Poker2K.txt"));
 			br = new BufferedReader(new InputStreamReader(input));
 			String linhaAtual;
 			while(br.ready()){
