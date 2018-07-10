@@ -1,3 +1,4 @@
+package Implementacao;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
@@ -23,7 +24,7 @@ public class Principal {
 		Mao mao = null;
 		BufferedReader br=null;
 		InputStream input=null;
-		String entradaArq = "src/Arquivos/Poker2M.txt";
+		String entradaArq = "src/Arquivos/Poker2K.txt";
 		String saidaArq = "src/Arquivos/saida.txt";
 		OutputStream output= new FileOutputStream(saidaArq);;
 		try{
