@@ -24,7 +24,7 @@ public class Principal {
 		Mao mao = null;
 		BufferedReader br=null;
 		InputStream input=null;
-		String entradaArq = "src/Arquivos/Poker200M.txt";
+		String entradaArq = "src/Arquivos/poker2K.txt";
 		String saidaArq = "src/Arquivos/saida.txt";
 		OutputStream output= new FileOutputStream(saidaArq);;
 		try{
@@ -34,9 +34,9 @@ public class Principal {
 			while(br.ready()){
 				linhaAtual = br.readLine();
 				if(!linhaAtual.isEmpty()){
-					
+
 					mao = new Mao(File.linhaToDouble(linhaAtual.split(" ")));
-					File.escreverDados(mao); 
+					File.escreverDados(mao);
 					String saida = countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias;
 					output.write(saida.getBytes(Charset.forName("UTF-8")));
 				}
@@ -52,11 +52,11 @@ public class Principal {
 				e.printStackTrace();
 			}
 		}
-		
+
 		long fim = System.currentTimeMillis();
 		try{
 			FileWriter writer = new FileWriter("src/Arquivos/saida.txt");
-			writer.write(Math.abs(inicio - fim) + " | " + 
+			writer.write(Math.abs(inicio - fim) + " | " +
 					countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias);
 			writer.close();
 		} catch(Exception e){
