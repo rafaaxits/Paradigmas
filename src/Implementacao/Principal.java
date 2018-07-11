@@ -58,7 +58,7 @@ public class Principal {
 		InputStream input=null;
 		OutputStream output= new FileOutputStream("src/Arquivos/saida.txt");;
 		try{
-			input = new BufferedInputStream(new FileInputStream("src/Arquivos/Poker2K.txt"));
+			input = new BufferedInputStream(new FileInputStream("src/Arquivos/Poker2M.txt"));
 			br = new BufferedReader(new InputStreamReader(input));
 			String linhaAtual;
 			while(br.ready()){
@@ -149,8 +149,8 @@ public class Principal {
 			                        }
 			                    }
 			                } 
-					String saida = countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias;
-					output.write(saida.getBytes(Charset.forName("UTF-8")));
+					//String saida = countQnt4iguais + " | " + countQntNumeroDiferencas + " | " + countQntSequencias;
+					//output.write(saida.getBytes(Charset.forName("UTF-8")));
 					/*mao.add(Stream.concat(Arrays.stream(index),
 						Arrays.stream(linhaToDouble(linhaAtual.split(" ")))
 						).toArray(Double[]::new));*/
