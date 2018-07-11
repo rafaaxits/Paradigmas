@@ -24,7 +24,7 @@ public class Principal {
 		Mao mao = null;
 		BufferedReader br=null;
 		InputStream input=null;
-		String entradaArq = "src/Arquivos/Poker2K.txt";
+		String entradaArq = "src/Arquivos/Poker200M.txt";
 		String saidaArq = "src/Arquivos/saida.txt";
 		OutputStream output= new FileOutputStream(saidaArq);;
 		try{
