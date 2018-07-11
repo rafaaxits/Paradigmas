@@ -5,7 +5,7 @@ public class Principal {
 
 	public static void main(String[] args) {
 		long inicio = System.currentTimeMillis();
-		Maos maos = new Maos (File.lerArquivo("src/Arquivos/poker2K.txt"));
+		Maos maos = new Maos (File.lerArquivo("C:/Users/Nycolas/Documents/Paradigmas/poker200M.txt"));
 		int saidas [] = File.escreverDados(maos);
 		long fim = System.currentTimeMillis();
 		try{
